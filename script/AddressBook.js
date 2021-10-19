@@ -1,6 +1,6 @@
 class AdderssBook {
 
-    constructor(params) {
+    constructor(...params) {
         this.id = params[0]
         this.name = params[1]
         this.address = params[2]
