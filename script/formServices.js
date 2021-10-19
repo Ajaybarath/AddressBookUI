@@ -7,7 +7,17 @@ const save = () => {
 }
 
 const resetForm = () => {
+    setValue('#name', '');
+    setValue('#address', '');
+    setValue('#State', 'Select State');
+    setValue('#city', 'Select City');
+    setValue('#zip', '');
+    setValue('#phone', '');
+}
 
+const setValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.value = value;
 }
 
 const addToLocalStorage = () => {
@@ -32,6 +42,7 @@ const addToLocalStorage = () => {
     localStorage.setItem("ContactList", JSON.stringify(contactList))
     alert("saved successfullf")
     resetForm();
+    window.location.replace(siteProperties.homePage)
 }
 
 const getFormData = () => {
