@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../styles/homePage.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap"
+        rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee payroll app</title>
+</head>
+
+<body>
+
+    <header class="header-content header">
+        <div class="logo-content">
+            <img src="../assets/images/logo.png" alt="">
+            <div>
+                <span class="emp-text">ADDRESS</span><br>
+                <span class="emp-text emp-payroll">BOOK</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="header-content">
+            <div class="emp-detail-text">
+                Person Detail <div class="emp-content"></div>
+            </div>
+            <a href="../html/Form.html" class="add-button">
+                <img src="../assets/icons/add-24px.svg" alt="">Add Person</a>
+        </div>
+
+        <table class="table-main" id="display">
+
+            <tr>
+                <th>FullName</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip Code</th>
+                <th>Phone Number</th>
+            </tr>
+
+            <tr>
+                <td>Ajay Barath</td>
+                <td>Velayuthampalayam, Karur</td>
+                <td>Karur</td>
+                <td>Tamil Nadu</td>
+                <td>629117</td>
+                <td>91 9965775758</td>
+                <td class="action-content">
+                    <img src="../assets/icons/delete-black-18dp.svg" id="1" onclick="remove(this)" alt="delete">
+                    <img src="../assets/icons/create-black-18dp.svg" id="2" onclick="update(this)" alt="delete">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+
+</html>
