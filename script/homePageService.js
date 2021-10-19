@@ -34,12 +34,26 @@ const createInnerHtml = () => {
             <td>${contact._zip}</td>
             <td>${contact._phone}</td>
             <td class="action-content">
-                <img src="../assets/icons/delete-black-18dp.svg" id="1" onclick="remove(this)" alt="delete">
-                <img src="../assets/icons/create-black-18dp.svg" id="2" onclick="update(this)" alt="delete">
+                <img src="../assets/icons/delete-black-18dp.svg" id=${contact._id} onclick="deleteContact(this)" alt="delete">
+                <img src="../assets/icons/create-black-18dp.svg" id=${contact._id} onclick="deleteContact(this)" alt="delete">
             </td>
         </tr>`;
     }
 
     document.querySelector('.table-main').innerHTML = innerHtml;
+
+}
+
+const deleteContact = (node) => {
+    let contactLocalData = addressBookListArr.find(cntDta => cntDta._id == node.id);
+    if (!contactLocalData) {
+        return;
+    }
+
+    console.log(node.id)
+    const index = addressBookListArr.map(cntDta => cntDta._id).indexOf(contactLocalData._id);
+    addressBookListArr.splice(index, 1);
+    localStorage.setItem("ContactList", JSON.stringify(addressBookListArr))
+    createInnerHtml();
 
 }
