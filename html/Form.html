@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap"
+        rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee payroll form</title>
+    <link rel="stylesheet" href="../styles/from.css">
+</head>
+
+<body>
+
+    <header class="header-content header">
+        <div class="logo-content">
+            <img src="../assets/images/logo.png" alt="">
+            <div>
+                <span class="emp-text">ADDRESS</span><br>
+                <span class="emp-text emp-payroll">BOOK</span>
+            </div>
+        </div>
+    </header>
+    <div class="form-content">
+        <div class="form-container">
+
+            <form action="" class="form" onsubmit="save(); return false">
+                <div class="header-row">
+                    <div class="form-head">
+                        Person Address form
+                    </div>
+                    <a href="../html/HomePage.html"> <img src="../assets/icons/cancel.svg" alt="" class="cancel-btn">
+                    </a>
+
+                </div>
+
+                <div class="form-rows">
+                    <div class="row-content">
+                        <label class="input" for="name">
+                            <input class="input__field" type="text" placeholder=" " id="name" />
+                            <span class="input__label">Full Name</span>
+                        </label>
+                        <error-output class="name-error" for="text"></error-output>
+                    </div>
+
+                    <div class="row-content">
+                        <label class="input" for="address">
+                            <textarea class="input__field address-field" type="text" placeholder=" "
+                                id="address"></textarea>
+                            <span class="input__label">Address</span>
+                        </label>
+                    </div>
+
+                    <div class="add-content">
+                        <div class="row-content">
+                            <select name="City" id="city" class="dropDown">
+                                <option value="Select City">Select City</option>
+                                <option value="Salem">Salem</option>
+                                <option value="Coimbatore">Coimbatore</option>
+                            </select>
+                            <error-output class="date-error" for="text"></error-output>
+                        </div>
+
+                        <div class="row-content">
+                            <select name="State" id="State" class="dropDown">
+                                <option value="Select State">Select State</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Kerla">Kerla</option>
+                            </select>
+                            <error-output class="date-error" for="text"></error-output>
+                        </div>
+
+                        <div class="row-content zip-content">
+                            <label class="input" for="name">
+                                <input class="input__field" type="number" placeholder=" " id="zip" />
+                                <span class="input__label">Zip Code</span>
+                            </label>
+                            <error-output class="zip-error" for="text"></error-output>
+                        </div>
+                    </div>
+
+
+                    <div class="row-content">
+                        <label class="input" for="name">
+                            <input class="input__field" type="tel" placeholder=" " id="phone" />
+                            <span class="input__label">Phone Number</span>
+                        </label>
+                        <error-output class="phone-error" for="text"></error-output>
+                    </div>
+
+                    <div class="buttonParent">
+                        <button class="button submitButton" id="submitButton" onclick="save(this); return false"
+                            type="submit">Add</button>
+                        <button class="button resetButton" type="reset"
+                            onclick="resetForm(); return false">Reset</button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const salary = document.querySelector('#salary');
+        const output = document.querySelector('.salary-output');
+        output.textContent = salary.value;
+        salary.addEventListener('input', function () {
+            output.textContent = salary.value;
+        })
+
+        const name = document.querySelector('#name');
+        const textError = document.querySelector('.text-error');
+        name.addEventListener('input', function () {
+            let nameRegex = RegExp("[A-Z][a-zA-Z]{2,}")
+            if (nameRegex.test(name.value))
+                textError.textContent = "";
+            else textError.textContent = "Name is incorrect";
+        })
+
+
+        day.addEventListener('input', function () {
+            let day = document.querySelector("#day").value
+            let month = document.querySelector("#month").value
+            let year = document.querySelector("#year").value
+            const dateError = document.querySelector('.date-error');
+            let startDate = new Date(day + "-" + month + "-" + year)
+            var today = new Date();
+            const oneMonthBefore = new Date(today.setDate(today.getDate() - 30))
+            const oneMonthAfter = new Date(today.setDate(today.getDate() + 30))
+
+            today = new Date();
+            if (today < startDate || startDate < oneMonthBefore || startDate > oneMonthAfter) dateError.textContent = "Date is incorrect";
+            else dateError.textContent = "";
+
+        })
+
+        month.addEventListener('input', function () {
+            let day = document.querySelector("#day").value
+            let month = document.querySelector("#month").value
+            let year = document.querySelector("#year").value
+            const dateError = document.querySelector('.date-error');
+            let startDate = new Date(day + "-" + month + "-" + year)
+            var today = new Date();
+            const oneMonthBefore = new Date(today.setDate(today.getDate() - 30))
+            const oneMonthAfter = new Date(today.setDate(today.getDate() + 30))
+
+            today = new Date();
+            if (today < startDate || startDate < oneMonthBefore || startDate > oneMonthAfter) dateError.textContent = "Date is incorrect";
+            else dateError.textContent = "";
+
+        })
+
+        year.addEventListener('input', function () {
+            let day = document.querySelector("#day").value
+            let month = document.querySelector("#month").value
+            let year = document.querySelector("#year").value
+            const dateError = document.querySelector('.date-error');
+            let startDate = new Date(day + "-" + month + "-" + year)
+            var today = new Date();
+            const oneMonthBefore = new Date(today.setDate(today.getDate() - 30))
+            const oneMonthAfter = new Date(today.setDate(today.getDate() + 30))
+
+            today = new Date();
+            if (today < startDate || startDate < oneMonthBefore || startDate > oneMonthAfter) dateError.textContent = "Date is incorrect";
+            else dateError.textContent = "";
+
+        })
+
+
+
+    </script>
+
+    <script src="../js/EmployeeData.js"></script>
+
+
+</body>
+
+</html>
