@@ -9,7 +9,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 const save = () => {
     updatedContactObj = getFormData();
-    addToLocalStorage();
+    try {
+        if (siteProperties.useLocalStorage == true) {
+            addToLocalStorage();
+        }
+        else {
+            addToServer();
+        }
+    }
+    catch (e) {
+        alert(e)
+    }
+
 }
 
 const resetForm = () => {
@@ -24,6 +35,30 @@ const resetForm = () => {
 const setValue = (id, value) => {
     const element = document.querySelector(id);
     element.value = value;
+}
+
+const addToServer = () => {
+    let postUrl = siteProperties.serverUrl;
+    let methodCall = "POST"
+    if (isUpdate) {
+        methodCall = "PUT";
+        postUrl = siteProperties.serverUrl + updatedContactObj.id;
+    }
+
+    makePromiseCall(methodCall, postUrl, false, updatedContactObj)
+        .then(responseText => {
+            console.log("Get user data: " + responseText)
+            alert(updatedContactObj)
+            alert("saved successfully")
+            resetForm();
+            localStorage.removeItem('editEmp')
+            window.location.replace(siteProperties.homePage)
+
+        })
+        .catch(error => {
+            throw error;
+
+        })
 }
 
 const addToLocalStorage = () => {
@@ -66,18 +101,20 @@ const getFormData = () => {
         else
             id = getNewId();
 
-        try {
-            let adderssBook = new AdderssBook(id, name, address, city, state, zip, phone);
-            console.log(adderssBook)
-            return adderssBook;
-        }
-        catch (e) {
-            alert(e)
-        }
     }
     else {
         if (isUpdate == true)
             id = contactIdToUpdate;
+    }
+
+
+    try {
+        let adderssBook = new AdderssBook(id, name, address, city, state, zip, phone);
+        console.log(adderssBook)
+        return adderssBook;
+    }
+    catch (e) {
+        alert(e)
     }
 
 }
