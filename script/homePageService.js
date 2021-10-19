@@ -1,15 +1,37 @@
 let addressBookListArr = new Array();
 
 window.addEventListener('DOMContentLoaded', (event) => {
+
     localStorage.removeItem('editEmp')
-    addressBookListArr = getAddressBookDataFromLocalStorage();
-    console.log(addressBookListArr)
-    createInnerHtml();
+    if (siteProperties.useLocalStorage == true) {
+        addressBookListArr = getAddressBookDataFromLocalStorage();
+        console.log(addressBookListArr)
+        createInnerHtml();
+    }
+    else {
+        addressBookListArr = getAddressBookDataFromServer();
+        console.log(addressBookListArr)
+    }
+
     console.log("content loaded")
 })
 
 const getAddressBookDataFromLocalStorage = () => {
     return localStorage.getItem('ContactList') ? JSON.parse(localStorage.getItem('ContactList')) : [];
+}
+
+const getAddressBookDataFromServer = () => {
+    const getURL = siteProperties.serverUrl;
+    makePromiseCall("GET", getURL, true)
+        .then(responseText => {
+            console.log("Get user data: " + responseText)
+            addressBookListArr = JSON.parse(responseText);
+            createInnerHtml();
+        })
+        .catch(error => {
+            console.log("Get Error status: " + JSON.stringify(error))
+            createInnerHtml();
+        })
 }
 
 const createInnerHtml = () => {
