@@ -35,7 +35,7 @@ const createInnerHtml = () => {
             <td>${contact._phone}</td>
             <td class="action-content">
                 <img src="../assets/icons/delete-black-18dp.svg" id=${contact._id} onclick="deleteContact(this)" alt="delete">
-                <img src="../assets/icons/create-black-18dp.svg" id=${contact._id} onclick="deleteContact(this)" alt="delete">
+                <img src="../assets/icons/create-black-18dp.svg" id=${contact._id} onclick="updateContact(this)" alt="delete">
             </td>
         </tr>`;
     }
@@ -55,5 +55,16 @@ const deleteContact = (node) => {
     addressBookListArr.splice(index, 1);
     localStorage.setItem("ContactList", JSON.stringify(addressBookListArr))
     createInnerHtml();
+
+}
+
+const updateContact = (node) => {
+    let contactLocalData = addressBookListArr.find(cntDta => cntDta._id == node.id);
+    if (!contactLocalData) {
+        return;
+    }
+
+    localStorage.setItem('editEmp', JSON.stringify(contactLocalData))
+    window.location.replace(siteProperties.formPage);
 
 }
