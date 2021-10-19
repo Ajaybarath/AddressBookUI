@@ -27,12 +27,12 @@ const createInnerHtml = () => {
     for (const contact of addressBookListArr) {
         innerHtml = ` ${innerHtml}
         <tr>
-            <td>Ajay Barath</td>
-            <td>Velayuthampalayam, Karur</td>
-            <td>Karur</td>
-            <td>Tamil Nadu</td>
-            <td>629117</td>
-            <td>91 9965775758</td>
+            <td>${contact._name}</td>
+            <td>${contact._address}</td>
+            <td>${contact._city}</td>
+            <td>${contact._state}</td>
+            <td>${contact._zip}</td>
+            <td>${contact._phone}</td>
             <td class="action-content">
                 <img src="../assets/icons/delete-black-18dp.svg" id="1" onclick="remove(this)" alt="delete">
                 <img src="../assets/icons/create-black-18dp.svg" id="2" onclick="update(this)" alt="delete">
