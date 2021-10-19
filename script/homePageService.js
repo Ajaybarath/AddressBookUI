@@ -34,8 +34,8 @@ const createInnerHtml = () => {
             <td>${contact._zip}</td>
             <td>${contact._phone}</td>
             <td class="action-content">
-                <img src="../assets/icons/delete-black-18dp.svg" id=${contact._id} onclick="deleteContact(this)" alt="delete">
-                <img src="../assets/icons/create-black-18dp.svg" id=${contact._id} onclick="updateContact(this)" alt="delete">
+                <img src="../assets/icons/delete-black-18dp.svg" id=${contact.id} onclick="deleteContact(this)" alt="delete">
+                <img src="../assets/icons/create-black-18dp.svg" id=${contact.id} onclick="updateContact(this)" alt="delete">
             </td>
         </tr>`;
     }
@@ -45,13 +45,13 @@ const createInnerHtml = () => {
 }
 
 const deleteContact = (node) => {
-    let contactLocalData = addressBookListArr.find(cntDta => cntDta._id == node.id);
+    let contactLocalData = addressBookListArr.find(cntDta => cntDta.id == node.id);
     if (!contactLocalData) {
         return;
     }
 
     console.log(node.id)
-    const index = addressBookListArr.map(cntDta => cntDta._id).indexOf(contactLocalData._id);
+    const index = addressBookListArr.map(cntDta => cntDta.id).indexOf(contactLocalData.id);
     addressBookListArr.splice(index, 1);
     localStorage.setItem("ContactList", JSON.stringify(addressBookListArr))
     createInnerHtml();
@@ -59,7 +59,7 @@ const deleteContact = (node) => {
 }
 
 const updateContact = (node) => {
-    let contactLocalData = addressBookListArr.find(cntDta => cntDta._id == node.id);
+    let contactLocalData = addressBookListArr.find(cntDta => cntDta.id == node.id);
     if (!contactLocalData) {
         return;
     }

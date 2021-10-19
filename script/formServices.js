@@ -30,12 +30,12 @@ const addToLocalStorage = () => {
     var contactList = JSON.parse(localStorage.getItem("ContactList"))
     let contactLocalData;
     if (contactList) {
-        contactLocalData = contactList.find(cntDta => cntDta._id === updatedContactObj._id);
+        contactLocalData = contactList.find(cntDta => cntDta.id === updatedContactObj.id);
         if (!contactLocalData) {
             contactList.push(updatedContactObj);
         }
         else {
-            const index = contactList.map(cntDta => cntDta._id).indexOf(contactLocalData._id);
+            const index = contactList.map(cntDta => cntDta.id).indexOf(contactLocalData.id);
             contactList[index] = updatedContactObj;
         }
 
@@ -60,18 +60,24 @@ const getFormData = () => {
     let phone = document.querySelector("#phone").value;
     let id;
 
-    if (isUpdate == true)
-        id = contactIdToUpdate;
-    else
-        id = getNewId();
+    if (siteProperties.useLocalStorage == true) {
+        if (isUpdate == true)
+            id = contactIdToUpdate;
+        else
+            id = getNewId();
 
-    try {
-        let adderssBook = new AdderssBook(id, name, address, city, state, zip, phone);
-        console.log(adderssBook)
-        return adderssBook;
+        try {
+            let adderssBook = new AdderssBook(id, name, address, city, state, zip, phone);
+            console.log(adderssBook)
+            return adderssBook;
+        }
+        catch (e) {
+            alert(e)
+        }
     }
-    catch (e) {
-        alert(e)
+    else {
+        if (isUpdate == true)
+            id = contactIdToUpdate;
     }
 
 }
@@ -89,7 +95,7 @@ const checkForUpdate = () => {
     if (!isUpdate) return;
 
     updatedContactObj = JSON.parse(contactJsonData);
-    contactIdToUpdate = updatedContactObj._id;
+    contactIdToUpdate = updatedContactObj.id;
     setForm();
 }
 

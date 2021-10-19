@@ -10,10 +10,6 @@ class AdderssBook {
         this.phone = params[6]
     }
 
-    set id(id) {
-        this._id = id;
-    }
-
     set name(name) {
         let namrRegex = RegExp('^[A-Z]{1}[a-z]{2,}$')
         if (namrRegex.test(name))
@@ -45,10 +41,6 @@ class AdderssBook {
         if (phoneRegex.test(phone))
             this._phone = phone;
         else throw 'phone number is invalid'
-    }
-
-    get id() {
-        return this._id;
     }
 
     get name() {
