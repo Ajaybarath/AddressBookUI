@@ -1,5 +1,11 @@
 let contactListArr = new Array();
 let updatedContactObj;
+let isUpdate = false;
+let contactIdToUpdate = 0;
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    checkForUpdate();
+})
 
 const save = () => {
     updatedContactObj = getFormData();
@@ -52,7 +58,12 @@ const getFormData = () => {
     let zip = document.querySelector("#zip").value;
     let city = document.querySelector("#city").value;
     let phone = document.querySelector("#phone").value;
-    let id = getNewId()
+    let id;
+
+    if (isUpdate == true)
+        id = contactIdToUpdate;
+    else
+        id = getNewId();
 
     try {
         let adderssBook = new AdderssBook(id, name, address, city, state, zip, phone);
@@ -70,4 +81,23 @@ const getNewId = () => {
     contactId = !contactId ? 1 : (parseInt(contactId) + 1);
     localStorage.setItem("ContactId", contactId);
     return contactId;
+}
+
+const checkForUpdate = () => {
+    const contactJsonData = localStorage.getItem('editEmp');
+    isUpdate = contactJsonData ? true : false;
+    if (!isUpdate) return;
+
+    updatedContactObj = JSON.parse(contactJsonData);
+    contactIdToUpdate = updatedContactObj._id;
+    setForm();
+}
+
+const setForm = () => {
+    setValue('#name', updatedContactObj._name);
+    setValue('#address', updatedContactObj._address);
+    setValue('#State', updatedContactObj._state);
+    setValue('#city', updatedContactObj._city);
+    setValue('#zip', updatedContactObj._zip);
+    setValue('#phone', updatedContactObj._phone);
 }
