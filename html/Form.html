@@ -54,6 +54,7 @@
                                 id="address"></textarea>
                             <span class="input__label">Address</span>
                         </label>
+                        <error-output class="address-error" for="text"></error-output>
                     </div>
 
                     <div class="add-content">
@@ -63,7 +64,6 @@
                                 <option value="Salem">Salem</option>
                                 <option value="Coimbatore">Coimbatore</option>
                             </select>
-                            <error-output class="date-error" for="text"></error-output>
                         </div>
 
                         <div class="row-content">
@@ -72,7 +72,6 @@
                                 <option value="Tamil Nadu">Tamil Nadu</option>
                                 <option value="Kerla">Kerla</option>
                             </select>
-                            <error-output class="date-error" for="text"></error-output>
                         </div>
 
                         <div class="row-content zip-content">
@@ -80,7 +79,6 @@
                                 <input class="input__field" type="number" placeholder=" " id="zip" />
                                 <span class="input__label">Zip Code</span>
                             </label>
-                            <error-output class="zip-error" for="text"></error-output>
                         </div>
                     </div>
 
@@ -106,77 +104,7 @@
         </div>
     </div>
 
-    <script>
-        const salary = document.querySelector('#salary');
-        const output = document.querySelector('.salary-output');
-        output.textContent = salary.value;
-        salary.addEventListener('input', function () {
-            output.textContent = salary.value;
-        })
-
-        const name = document.querySelector('#name');
-        const textError = document.querySelector('.text-error');
-        name.addEventListener('input', function () {
-            let nameRegex = RegExp("[A-Z][a-zA-Z]{2,}")
-            if (nameRegex.test(name.value))
-                textError.textContent = "";
-            else textError.textContent = "Name is incorrect";
-        })
-
-
-        day.addEventListener('input', function () {
-            let day = document.querySelector("#day").value
-            let month = document.querySelector("#month").value
-            let year = document.querySelector("#year").value
-            const dateError = document.querySelector('.date-error');
-            let startDate = new Date(day + "-" + month + "-" + year)
-            var today = new Date();
-            const oneMonthBefore = new Date(today.setDate(today.getDate() - 30))
-            const oneMonthAfter = new Date(today.setDate(today.getDate() + 30))
-
-            today = new Date();
-            if (today < startDate || startDate < oneMonthBefore || startDate > oneMonthAfter) dateError.textContent = "Date is incorrect";
-            else dateError.textContent = "";
-
-        })
-
-        month.addEventListener('input', function () {
-            let day = document.querySelector("#day").value
-            let month = document.querySelector("#month").value
-            let year = document.querySelector("#year").value
-            const dateError = document.querySelector('.date-error');
-            let startDate = new Date(day + "-" + month + "-" + year)
-            var today = new Date();
-            const oneMonthBefore = new Date(today.setDate(today.getDate() - 30))
-            const oneMonthAfter = new Date(today.setDate(today.getDate() + 30))
-
-            today = new Date();
-            if (today < startDate || startDate < oneMonthBefore || startDate > oneMonthAfter) dateError.textContent = "Date is incorrect";
-            else dateError.textContent = "";
-
-        })
-
-        year.addEventListener('input', function () {
-            let day = document.querySelector("#day").value
-            let month = document.querySelector("#month").value
-            let year = document.querySelector("#year").value
-            const dateError = document.querySelector('.date-error');
-            let startDate = new Date(day + "-" + month + "-" + year)
-            var today = new Date();
-            const oneMonthBefore = new Date(today.setDate(today.getDate() - 30))
-            const oneMonthAfter = new Date(today.setDate(today.getDate() + 30))
-
-            today = new Date();
-            if (today < startDate || startDate < oneMonthBefore || startDate > oneMonthAfter) dateError.textContent = "Date is incorrect";
-            else dateError.textContent = "";
-
-        })
-
-
-
-    </script>
-
-    <script src="../js/EmployeeData.js"></script>
+    <script src="../script/formValidation.js"></script>
 
 
 </body>
