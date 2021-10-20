@@ -29,7 +29,7 @@
     <div class="form-content">
         <div class="form-container">
 
-            <form action="" class="form" onsubmit="save(); return false">
+            <form action="" class="form" onsubmit="save(); return false" autocomplete="off">
                 <div class="header-row">
                     <div class="form-head">
                         Person Address form
@@ -41,24 +41,35 @@
 
                 <div class="form-rows">
                     <div class="row-content">
-                        <label class="input" for="name">
-                            <input class="input__field" type="text" placeholder=" " id="name" />
-                            <span class="input__label">Full Name</span>
+                        <label class="input" for="name">Full Name
                         </label>
+                        <input class="input__field" type="text" placeholder=" " id="name" />
+
                         <error-output class="name-error" for="text"></error-output>
+                    </div>
+                    
+                    <div class="row-content">
+                        <label class="input" for="name">
+                            Phone Number
+                        </label>
+                        <input class="input__field" type="tel" placeholder=" " id="phone" />
+                        <error-output class="phone-error" for="text"></error-output>
                     </div>
 
                     <div class="row-content">
                         <label class="input" for="address">
-                            <textarea class="input__field address-field" type="text" placeholder=" "
-                                id="address"></textarea>
-                            <span class="input__label">Address</span>
+                            Address
                         </label>
+                        <textarea class="input__field address-field" type="text" placeholder=" "
+                            id="address"></textarea>
                         <error-output class="address-error" for="text"></error-output>
                     </div>
 
                     <div class="add-content">
                         <div class="row-content">
+                            <label class="input" for="name">
+                               City
+                            </label>
                             <select name="City" id="city" class="dropDown">
                                 <option value="Select City">Select City</option>
                                 <option value="Salem">Salem</option>
@@ -67,6 +78,9 @@
                         </div>
 
                         <div class="row-content">
+                            <label class="input" for="name">
+                                State
+                            </label>
                             <select name="State" id="State" class="dropDown">
                                 <option value="Select State">Select State</option>
                                 <option value="Tamil Nadu">Tamil Nadu</option>
@@ -76,21 +90,12 @@
 
                         <div class="row-content zip-content">
                             <label class="input" for="name">
-                                <input class="input__field" type="number" placeholder=" " id="zip" />
-                                <span class="input__label">Zip Code</span>
+                                Zip Code
                             </label>
+                            <input class="input__field" type="number" placeholder=" " id="zip" />
+
                         </div>
                     </div>
-
-
-                    <div class="row-content">
-                        <label class="input" for="name">
-                            <input class="input__field" type="tel" placeholder=" " id="phone" />
-                            <span class="input__label">Phone Number</span>
-                        </label>
-                        <error-output class="phone-error" for="text"></error-output>
-                    </div>
-
                     <div class="buttonParent">
                         <button class="button submitButton" id="submitButton" onclick="save(this); return false"
                             type="submit">Add</button>
