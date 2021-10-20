@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const phone = document.querySelector('#phone');
     const phoneError = document.querySelector('.phone-error');
     phone.addEventListener('input', function () {
-        let phoneRegex = RegExp("^([91][6-9][0-9]{9})$|^([+91][6-9][0-9]{9})$|^([6-9][0-9]{9})$")
+        let phoneRegex = RegExp("^([+]?([0-9]{2})?([6-9]{1}[0-9]{9}))$")
         if (phoneRegex.test(phone.value))
          phoneError.textContent = "";
         else phoneError.textContent = "phone is incorrect";

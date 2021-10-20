@@ -37,7 +37,7 @@ class AdderssBook {
     }
 
     set phone(phone) {
-        let phoneRegex = RegExp("^([91][6-9][0-9]{9})$|^([+91][6-9][0-9]{9})$|^([6-9][0-9]{9})$")
+        let phoneRegex = RegExp("^([+]?([0-9]{2})?([6-9]{1}[0-9]{9}))$")
         if (phoneRegex.test(phone))
             this._phone = phone;
         else throw 'phone number is invalid'
