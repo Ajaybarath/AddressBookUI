@@ -75,8 +75,26 @@ const deleteContact = (node) => {
     console.log(node.id)
     const index = addressBookListArr.map(cntDta => cntDta.id).indexOf(contactLocalData.id);
     addressBookListArr.splice(index, 1);
-    localStorage.setItem("ContactList", JSON.stringify(addressBookListArr))
-    createInnerHtml();
+
+    if (siteProperties.useLocalStorage ==true) {
+        localStorage.setItem("ContactList", JSON.stringify(addressBookListArr))
+        createInnerHtml();
+    }
+    else {
+        let deleteURL = siteProperties.serverUrl + node.id;
+        makePromiseCall("DELETE", deleteURL, false)
+            .then(responseText => {
+                console.log("User deleted: " + responseText + " id: " + node.id)
+                createInnerHtml()
+
+            })
+            .catch(error => {
+                console.log("Delete Error status: " + JSON.stringify(error))
+                createInnerHtml()
+
+            })
+    }
+    
 
 }
 
